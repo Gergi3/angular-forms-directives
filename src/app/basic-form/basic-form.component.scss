@@ -1,0 +1,14 @@
+.form-input-container {
+  padding: 0 0 10px 0;
+  font-size: 1rem;
+  &:last-of-type {
+    padding: 0;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.7rem;
+  font-family: Helvetica, sans-serif;
+  line-height: 10px;
+}

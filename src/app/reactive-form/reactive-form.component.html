@@ -1,0 +1,23 @@
+<form [formGroup]="loginForm" (ngSubmit)="registerHandler()">
+  <div class="form-input-container">
+    <label for="email">Email: </label>
+    <input type="text" name="email" id="email" formControlName="email">
+    <ng-container *ngIf="loginForm.get('email')?.touched">
+      <div class="error" *ngIf="loginForm.get('email')?.hasError('required')">Email is required</div>
+      <div class="error" *ngIf="loginForm.get('email')?.hasError('email') ">Email must be valid</div>
+    </ng-container>
+  </div>
+
+  <div class="form-input-container">
+    <label for="password">Password: </label>
+    <input type="text" name="password" id="password" formControlName="password" >
+    <ng-container *ngIf="loginForm.get('password')?.touched">
+      <div class="error" *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
+      <div class="error" *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at more than 2 characters long</div>
+      <div class="error" *ngIf="loginForm.get('password')?.hasError('maxCount')">Password must be at less than 10 characters long</div>
+    </ng-container>
+  </div>
+
+  <button [disabled]="loginForm.invalid">Register</button>
+  <div>{{loginForm.value | json }}</div>
+</form>

@@ -1,0 +1,16 @@
+<div [appHover]="hovered">Hover me!</div>
+<ng-template #hovered> HEHE U HOVERED ME NOW IM HOVEREDDDDDD!!!!</ng-template>
+
+<h2>Custom ngIf</h2>
+<button (click)="visibilityChangeHandler()">Change visibility</button>
+
+<p *appMyIf="isVisible">I am visible</p>
+
+<ng-template [appMyIf]="isVisible">
+  <p>I am visible (embedded template)</p>
+</ng-template>
+
+<ng-template #tmp>
+  <p>I am visible (seperate template)</p>
+</ng-template>
+<ng-container [appMyIf]="isVisible" [template]="tmp"></ng-container>

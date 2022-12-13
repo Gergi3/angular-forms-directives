@@ -1,0 +1,32 @@
+<form #registerForm="ngForm" (ngSubmit)="registerHandler(registerForm)">
+  <div class="form-input-container">
+    <label for="email">Email: </label>
+    <input type="text" name="email" id="email" #email="ngModel" ngModel required email>
+    <div class="errors" *ngIf="email.touched">
+      <div class="error" *ngIf="email.errors?.['required']">Email is required</div>
+      <div class="error" *ngIf="email.errors?.['email'] ">Email must be valid</div>
+    </div>
+  </div>
+
+  <div class="form-input-container">
+    <label for="password">Password: </label>
+    <input type="text" name="password" id="password" #password="ngModel" minlength="2" ngModel required [appMaxCount]="10" >
+    <div class="errors" *ngIf="password.touched">
+      <div class="error" *ngIf="password.errors?.['required']">Password is required</div>
+      <div class="error" *ngIf="password.errors?.['appMaxCount']">Password must be at less than 10 characters long</div>
+      <div class="error" *ngIf="password.errors?.['minlength']">Password must be at more than 2 characters long</div>
+    </div>
+  </div>
+
+  <div class="form-input-container">
+    <label for="rePassword">Re-Password: </label>
+    <input type="text" name="rePassword" id="rePassword" #rePassword="ngModel" ngModel required [pattern]="password.value">
+    <div class="errors" *ngIf="rePassword.touched">
+      <div class="error" *ngIf="rePassword.errors?.['required']">Re-Password is required</div>
+      <div class="error" *ngIf="rePassword.errors?.['pattern']">Re-Password must match Password</div>
+    </div>
+  </div>
+
+  <button [disabled]="registerForm.invalid">Register</button>
+  <div>{{ registerForm.value | json }}</div>
+</form>
